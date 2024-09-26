@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.Product;
-import com.model2.mvc.service.domain.User;
 import com.model2.mvc.service.product.ProductService;
 
 
@@ -38,8 +38,9 @@ public class ProductServiceTest {
 	@Autowired
 	@Qualifier("productServiceImpl")
 	private ProductService productService;
-
-//	@Test
+	
+	@Transactional
+	@Test
 	public void testAddProduct() throws Exception {
 		
 		Product product = new Product();
@@ -63,7 +64,7 @@ public class ProductServiceTest {
 		Assert.assertEquals(111122, product.getPrice());
 		Assert.assertEquals("testtest", product.getFileName());
 	}
-	
+
 //	@Test
 	public void testGetProduct() throws Exception {
 		
@@ -93,6 +94,7 @@ public class ProductServiceTest {
 		Assert.assertNotNull(productService.getProduct(10005));
 	}
 	
+//	@Transactional
 //	@Test
 	 public void testUpdateUser() throws Exception{
 		 
